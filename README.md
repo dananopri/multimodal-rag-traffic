@@ -12,9 +12,9 @@ The system **will not** do any traffic sign detection or real-time video process
 ### Content & Data
 The system uses Ukrainian Traffic signs, scraped from the following website: \
 `https://www.rhinocarhire.com/Drive-Smart-Blog/Drive-Smart-Ukraine/Ukraine-Road-Signs.aspx` \
-This dataset provide images of traffic signs accompanied with category labels (warning, mandatory, prohibitory)
+This dataset provide 147 images of traffic signs accompanied with category labels (warning, mandatory, prohibitory)
 
-Official traffic rule descriptions will be used for the textual description: \
+Official traffic rule descriptions will be used for the textual description (300-360 rules): \
 `https://pdr.infotech.gov.ua/theory/rules`
 
 Each traffic sign is represented using:
@@ -25,6 +25,8 @@ metadata fields such as:
 `category`,
 `source`
 
+Each traffic sign image is associated with its textual description via a shared sign ID stored in metadata.
+Text-based retrieval is used to identify relevant signs, while the linked images are presented alongside the retrieved descriptions to provide visual context.
 ### Example Queries
 The assistant may help with both general questions and signs-related quaries:
 1. What does a driver need to do at a pedestrian crossing?
@@ -38,10 +40,10 @@ The assistant may help with both general questions and signs-related quaries:
 
 
 ### Success Metrics
-The performence will be measured for 
-- Retrieval accuracy (using Top-k retrieval accuracy)
-- Image-text consistency (Manual verification)
-- Answer Correctness (Manual verification)
+- **Retrieval accuracy:** Top-3 retrieval should contain correct source for ≥70% of test queries
+- **Image-text consistency:** Manual verification should show ≥80% alignment
+- **Answer Correctness:** ≥75% of answers should be factually correct and well-cited
+- **Latency:** < 5 seconds per query end-to-end
 
 
 ### UI Expectations
